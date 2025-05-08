@@ -1,16 +1,14 @@
-import os
-import pathlib
 import sqlite3
 import unittest
+
+from tests.utils.test_utils import fetch_resource_path
+
 
 class DatabaseTestCase(unittest.TestCase):
     def test_database_connection(self):
 
-        db_path = "resources/investments.db" if os.getcwd().endswith("anaconda-investments") else "../resources/investments.db"
-
-
-        print('CWD:     ', os.getcwd())
-        print('Absolute path of file:     ', db_path)
+        resource_path = "investments.db"
+        db_path = fetch_resource_path(resource_path)
 
         sqlite_connection = sqlite3.connect(db_path)
         cursor = sqlite_connection.cursor()
